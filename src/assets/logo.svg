@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="dotsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#bgGrad)" stroke="#334155" stroke-width="2"/>
+  <!-- Modern Geometric DOTS Monogram & Furniture Arc -->
+  <circle cx="32" cy="32" r="8" fill="url(#dotsGrad)" filter="url(#glow)"/>
+  <circle cx="68" cy="32" r="8" fill="url(#dotsGrad)"/>
+  <circle cx="32" cy="68" r="8" fill="url(#dotsGrad)"/>
+  <circle cx="68" cy="68" r="8" fill="url(#dotsGrad)" filter="url(#glow)"/>
+  <path d="M 32 32 L 68 32 L 68 68 L 32 68 Z" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="4,4" opacity="0.6"/>
+  <circle cx="50" cy="50" r="14" fill="#0f172a" stroke="url(#dotsGrad)" stroke-width="4"/>
+  <path d="M 44 50 L 50 44 L 56 50 L 50 56 Z" fill="#f59e0b"/>
+</svg>

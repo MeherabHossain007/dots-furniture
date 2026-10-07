@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOTS Furniture & Décor - Employee Leave Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Custom Windows Frameless Title Bar
+       ======================================================================== -->
+  <header class="window-titlebar" id="windowTitlebar">
+    <div class="titlebar-brand">
+      <img src="assets/logo.svg" alt="DOTS Logo" class="titlebar-logo" id="titlebarLogo">
+      <div class="titlebar-title">
+        <span>DOTS Furniture &amp; Décor Limited</span>
+        <span class="titlebar-badge" id="titlebarBadge">Pro-Rata 2026</span>
+      </div>
+    </div>
+
+    <div class="titlebar-center">
+      <span class="titlebar-clock" id="titlebarClock">2026-10-07 11:55 AM</span>
+    </div>
+
+    <div class="titlebar-controls">
+      <button class="titlebar-btn" id="btnWindowMinimize" title="Minimize">
+        <svg width="10" height="1" viewBox="0 0 10 1" fill="currentColor">
+          <rect width="10" height="1" />
+        </svg>
+      </button>
+      <button class="titlebar-btn" id="btnWindowMaximize" title="Maximize">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="0.5" y="0.5" width="9" height="9" />
+        </svg>
+      </button>
+      <button class="titlebar-btn close-btn" id="btnWindowClose" title="Close">
+        <svg width="10" height="10" viewBox="0 0 10 10" stroke="currentColor" stroke-width="1.2">
+          <line x1="0" y1="0" x2="10" y2="10" />
+          <line x1="10" y1="0" x2="0" y2="10" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Main App Layout
+       ======================================================================== -->
+  <div class="app-container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </div>
+        <div class="sidebar-brand-text">
+          <h1>DOTS Furniture</h1>
+          <p>Leave Tracker Pro</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-section-label">Main Navigation</div>
+
+        <div class="nav-item active" data-tab="view-overview" id="navItemOverview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Executive Overview</span>
+        </div>
+
+        <div class="nav-item" data-tab="view-employees" id="navItemEmployees">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>Employee Directory</span>
+          <span class="nav-count-badge" id="navBadgeEmployeeCount">206</span>
+        </div>
+
+        <div class="nav-item" data-tab="view-prorata" id="navItemProrata">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+            <line x1="8" y1="6" x2="16" y2="6"></line>
+            <line x1="16" y1="14" x2="16" y2="18"></line>
+            <path d="M16 10h.01"></path>
+            <path d="M12 10h.01"></path>
+            <path d="M8 10h.01"></path>
+            <path d="M12 14h.01"></path>
+            <path d="M8 14h.01"></path>
+            <path d="M12 18h.01"></path>
+            <path d="M8 18h.01"></path>
+          </svg>
+          <span>Pro-Rata Engine</span>
+        </div>
+
+        <div class="nav-item" data-tab="view-departments" id="navItemDepartments">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20h20"></path>
+            <path d="M5 20V8.2a2 2 0 0 1 1.4-1.9l4-1.3a2 2 0 0 1 2.2.6L14 7"></path>
+            <path d="M19 20v-9a2 2 0 0 0-1.4-1.9l-3.6-1.1"></path>
+            <path d="M9 13h2"></path>
+            <path d="M9 17h2"></path>
+          </svg>
+          <span>Workshop &amp; Depts</span>
+          <span class="nav-count-badge" id="navBadgeDeptCount">27</span>
+        </div>
+
+        <div class="nav-item" data-tab="view-leaves" id="navItemLeaves">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Leave Management</span>
+        </div>
+
+        <div class="nav-section-label">System &amp; Data</div>
+
+        <div class="nav-item" data-tab="view-settings" id="navItemSettings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Backup &amp; Reports</span>
+        </div>
+      </nav>
+
+      <!-- Sidebar Policy Info Widget -->
+      <div class="sidebar-footer">
+        <div class="policy-widget">
+          <div class="policy-widget-header">
+            <span class="policy-widget-title">Annual Policy</span>
+            <span class="policy-widget-year" id="policyWidgetYear">2026</span>
+          </div>
+          <div class="policy-grid-mini">
+            <div class="policy-item-mini">
+              <span>Sick (SL)</span>
+              <strong id="sidebarPolicySL">14.0</strong>
+            </div>
+            <div class="policy-item-mini">
+              <span>Casual (CL)</span>
+              <strong id="sidebarPolicyCL">10.0</strong>
+            </div>
+            <div class="policy-item-mini">
+              <span>Earned (EL)</span>
+              <strong id="sidebarPolicyEL">6.0</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content View Area -->
+    <main class="app-main">
+      
+      <!-- Top Action Header -->
+      <header class="main-header">
+        <div class="header-title-box">
+          <h2 id="pageMainTitle">
+            <span id="pageTitleText">Executive Overview</span>
+          </h2>
+          <p id="pageMainSubtitle">Real-time leave balance tracking &amp; pro-rata employee records</p>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-secondary" id="btnQuickSearch" title="Focus search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search</span>
+          </button>
+
+          <button class="btn btn-outline" id="btnQuickApplyLeave">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Record Leave</span>
+          </button>
+
+          <button class="btn btn-primary" id="btnAddNewEmployee">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            <span>New Employee</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Viewport for Tabs -->
+      <div class="views-viewport" id="viewsViewport">
+
+        <!-- ====================================================================
+             TAB 1: Executive Overview
+             ==================================================================== -->
+        <section class="tab-view active" id="view-overview">
+          
+          <!-- KPI Metrics Row -->
+          <div class="kpi-metrics-grid">
+            <div class="kpi-card kpi-accent-amber">
+              <div class="kpi-header">
+                <span class="kpi-title">Total Workforce</span>
+                <div class="kpi-icon-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiTotalEmployees">206</span>
+                <span class="kpi-unit">Personnel</span>
+              </div>
+              <p class="kpi-subtext">
+                <span style="color: #fbbf24;">●</span>
+                <span>Active in 2026 Tracking Cycle</span>
+              </p>
+            </div>
+
+            <div class="kpi-card kpi-accent-blue">
+              <div class="kpi-header">
+                <span class="kpi-title">Allocated Leaves</span>
+                <div class="kpi-icon-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiTotalAllocated">4,125.0</span>
+                <span class="kpi-unit">Days</span>
+              </div>
+              <p class="kpi-subtext">
+                <span style="color: #60a5fa;">●</span>
+                <span>Calculated via Automated Pro-Rata</span>
+              </p>
+            </div>
+
+            <div class="kpi-card kpi-accent-rose">
+              <div class="kpi-header">
+                <span class="kpi-title">Leaves Utilized</span>
+                <div class="kpi-icon-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiTotalUsed">2.0</span>
+                <span class="kpi-unit">Days</span>
+              </div>
+              <p class="kpi-subtext">
+                <span style="color: #f87171;">●</span>
+                <span id="kpiUtilizationRate">0.05% Utilization Rate</span>
+              </p>
+            </div>
+
+            <div class="kpi-card kpi-accent-emerald">
+              <div class="kpi-header">
+                <span class="kpi-title">Available Balance</span>
+                <div class="kpi-icon-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiTotalRemaining">4,123.0</span>
+                <span class="kpi-unit">Days</span>
+              </div>
+              <p class="kpi-subtext">
+                <span style="color: #34d399;">●</span>
+                <span>Ready for Workforce Utilization</span>
+              </p>
+            </div>
+
+            <div class="kpi-card kpi-accent-purple">
+              <div class="kpi-header">
+                <span class="kpi-title">Factory Floor</span>
+                <div class="kpi-icon-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="kpi-value-row">
+                <span class="kpi-value" id="kpiFactoryCount">150</span>
+                <span class="kpi-unit">Craftsmen</span>
+              </div>
+              <p class="kpi-subtext">
+                <span style="color: #c084fc;">●</span>
+                <span>Wood, Metal, Panel, Lacquer &amp; C&amp;S</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Two-Column Analytics Layout -->
+          <div class="dashboard-grid-layout">
+            
+            <!-- Left Panel: Department Headcount & Distribution -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>Workforce by Department &amp; Workshop</span>
+                  </h3>
+                  <span class="dash-panel-subtitle">Headcount distribution across manufacturing and operations</span>
+                </div>
+                <button class="btn btn-sm btn-outline" id="btnViewAllDepts">View All Depts</button>
+              </div>
+
+              <!-- Top Department Bars Container -->
+              <div class="dept-bar-list" id="deptBarsContainer">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Right Panel: Leave Policy Breakdown & Active Tenure -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <h3 class="dash-panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M12 2a10 10 0 0 1 10 10"></path>
+                    </svg>
+                    <span>Leave Policy Breakdown</span>
+                  </h3>
+                  <span class="dash-panel-subtitle">Standard 30 Days Annual Entitlement</span>
+                </div>
+              </div>
+
+              <!-- Donut Chart & Legend -->
+              <div class="donut-summary-container">
+                <div class="donut-svg-wrapper">
+                  <svg viewBox="0 0 120 120" width="100%" height="100%">
+                    <!-- Sick Leave: 14/30 = 46.7% -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#1e293b" stroke-width="16"></circle>
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#3b82f6" stroke-width="16"
+                            stroke-dasharray="140.7 301.6" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>
+                    <!-- Casual Leave: 10/30 = 33.3% -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#f59e0b" stroke-width="16"
+                            stroke-dasharray="100.5 301.6" stroke-dashoffset="-140.7" transform="rotate(-90 60 60)"></circle>
+                    <!-- Earned Leave: 6/30 = 20.0% -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#10b981" stroke-width="16"
+                            stroke-dasharray="60.3 301.6" stroke-dashoffset="-241.2" transform="rotate(-90 60 60)"></circle>
+                  </svg>
+                  <div class="donut-inner-label">
+                    <strong id="donutTotalDays">30.0</strong>
+                    <span>Annual Cap</span>
+                  </div>
+                </div>
+
+                <div class="donut-legend-list">
+                  <div class="donut-legend-item">
+                    <div>
+                      <span class="donut-legend-color" style="background: #3b82f6;"></span>
+                      <span>Sick Leave (SL)</span>
+                    </div>
+                    <strong>14.0 Days (46.7%)</strong>
+                  </div>
+                  <div class="donut-legend-item">
+                    <div>
+                      <span class="donut-legend-color" style="background: #f59e0b;"></span>
+                      <span>Casual Leave (CL)</span>
+                    </div>
+                    <strong>10.0 Days (33.3%)</strong>
+                  </div>
+                  <div class="donut-legend-item">
+                    <div>
+                      <span class="donut-legend-color" style="background: #10b981;"></span>
+                      <span>Earned Leave (EL)</span>
+                    </div>
+                    <strong>6.0 Days (20.0%)</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tenure / Active Months Stats -->
+              <div style="margin-top: 18px; border-top: 1px solid var(--border-card); padding-top: 16px;">
+                <h4 style="font-size: 13px; font-weight: 700; color: #cbd5e1; margin-bottom: 8px;">Active Months In 2026</h4>
+                <div class="months-pill-grid" id="monthsPillGrid">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Joiners in 2026 Table Preview -->
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <div>
+                <h3 class="dash-panel-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                  </svg>
+                  <span>2026 New Hires &amp; Pro-Rata Entitlements</span>
+                </h3>
+                <span class="dash-panel-subtitle">Personnel enrolled during 2026 with pro-rated annual balances</span>
+              </div>
+              <button class="btn btn-sm btn-secondary" id="btnGoToFullDirectory">View All in Directory</button>
+            </div>
+
+            <div class="table-responsive-wrapper" style="max-height: 280px;">
+              <table class="data-table" id="recentHiresTable">
+                <thead>
+                  <tr>
+                    <th>Emp ID</th>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Joining Date</th>
+                    <th>Active</th>
+                    <th>SL (Alloc)</th>
+                    <th>CL (Alloc)</th>
+                    <th>EL (Alloc)</th>
+                    <th>Total Leaves</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recentHiresTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ====================================================================
+             TAB 2: Employee Directory & Leave Tracker (Main Grid)
+             ==================================================================== -->
+        <section class="tab-view" id="view-employees">
+          
+          <!-- Filter Toolbar -->
+          <div class="filter-toolbar">
+            <div class="search-input-group">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="searchInput" placeholder="Search by Employee ID, Name, Department, or Designation (e.g. 1010, Mahabub, Wood, Supervisor)...">
+              <button class="btn btn-sm btn-outline" id="btnClearSearch" style="display: none;">Clear</button>
+            </div>
+
+            <div class="filters-row">
+              <div class="filter-selects">
+                <select class="custom-select" id="filterDept">
+                  <option value="">All Departments (27)</option>
+                </select>
+
+                <select class="custom-select" id="filterMonths">
+                  <option value="">All Active Months</option>
+                  <option value="12">12 Months (Full Year)</option>
+                  <option value="11">11 Months</option>
+                  <option value="10">10 Months</option>
+                  <option value="9">9 Months</option>
+                  <option value="8">8 Months</option>
+                  <option value="7">7 Months</option>
+                  <option value="6">6 Months</option>
+                  <option value="5">5 Months</option>
+                  <option value="4">4 Months</option>
+                  <option value="3">3 Months</option>
+                </select>
+
+                <select class="custom-select" id="filterLeaveStatus">
+                  <option value="">All Leave Statuses</option>
+                  <option value="used_gt_0">Has Taken Leave (> 0)</option>
+                  <option value="used_eq_0">100% Leave Balance (Unused)</option>
+                  <option value="lwp">Has Leave Without Pay (LWP)</option>
+                </select>
+
+                <select class="custom-select" id="sortBySelect">
+                  <option value="id_asc">Sort: ID (Low to High)</option>
+                  <option value="id_desc">Sort: ID (High to Low)</option>
+                  <option value="name_asc">Sort: Name (A - Z)</option>
+                  <option value="dept_asc">Sort: Department</option>
+                  <option value="months_desc">Sort: Months Active (High to Low)</option>
+                  <option value="used_desc">Sort: Leaves Used (High to Low)</option>
+                  <option value="rem_asc">Sort: Remaining Leaves (Low to High)</option>
+                </select>
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-secondary btn-sm" id="btnExportFilteredCSV" title="Export current filtered view to CSV">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Export CSV</span>
+                </button>
+                <button class="btn btn-outline btn-sm" id="btnPrintDirectory" title="Print this view">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                  </svg>
+                  <span>Print View</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Wrapper Card -->
+          <div class="table-card">
+            <div class="table-responsive-wrapper">
+              <table class="data-table" id="masterEmployeeTable">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="id">Emp ID</th>
+                    <th class="sortable" data-sort="name">Employee Name</th>
+                    <th class="sortable" data-sort="dept">Department</th>
+                    <th>Designation</th>
+                    <th class="sortable" data-sort="date">Joining Date</th>
+                    <th class="sortable" data-sort="months">Active</th>
+                    
+                    <!-- Policy Allocation Columns -->
+                    <th class="th-group-alloc" title="Sick Leave Allocated">S L</th>
+                    <th class="th-group-alloc" title="Casual Leave Allocated">C L</th>
+                    <th class="th-group-alloc" title="Earned Leave Allocated">E L</th>
+                    <th class="th-group-alloc sortable" data-sort="totalAlloc" title="Total Allocated Leaves">Total</th>
+                    
+                    <!-- Usage Columns -->
+                    <th class="th-group-used" title="Sick Leave Used">SL Used</th>
+                    <th class="th-group-used" title="Casual Leave Used">CL Used</th>
+                    <th class="th-group-used" title="Earned Leave Used">EL Used</th>
+                    <th class="th-group-used" title="Leave Without Pay">LWP</th>
+                    <th class="th-group-used sortable" data-sort="totalUsed" title="Total Leaves Taken">Total Used</th>
+                    
+                    <!-- Remaining Columns -->
+                    <th class="th-group-rem" title="Sick Leave Remaining">SL Rem</th>
+                    <th class="th-group-rem" title="Casual Leave Remaining">CL Rem</th>
+                    <th class="th-group-rem" title="Earned Leave Remaining">EL Rem</th>
+                    <th class="th-group-rem sortable" data-sort="totalRem" title="Total Balance Remaining">Total Rem</th>
+                    
+                    <th>Status</th>
+                    <th style="text-align: right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="masterEmployeeTbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table Footer & Pagination -->
+            <div class="table-footer">
+              <div class="table-footer-info">
+                Showing <strong id="lblShowingCount">0</strong> of <strong id="lblTotalCount">0</strong> employees
+                <span id="lblFilterNotice" style="color: #fbbf24; margin-left: 6px;"></span>
+              </div>
+
+              <div class="pagination-controls">
+                <span style="font-size: 12px; color: var(--text-dim); margin-right: 4px;">Rows:</span>
+                <select class="custom-select" id="pageSizeSelect" style="padding: 3px 8px; font-size: 11px;">
+                  <option value="15">15</option>
+                  <option value="25" selected>25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="all">All</option>
+                </select>
+
+                <button class="page-btn" id="btnPagePrev">Previous</button>
+                <div id="pageNumbersContainer" style="display: flex; gap: 4px;"></div>
+                <button class="page-btn" id="btnPageNext">Next</button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ====================================================================
+             TAB 3: Pro-Rata Engine & Company Policy
+             ==================================================================== -->
+        <section class="tab-view" id="view-prorata">
+          
+          <!-- Banner -->
+          <div class="prorata-banner">
+            <div class="prorata-banner-text">
+              <h3>Automated Pro-Rata Leave Calculation Engine</h3>
+              <p>
+                DOTS Furniture &amp; Décor Limited uses an automated pro-rata system for employees joining during the 2026 calendar year.
+                Annual quotas (14 Sick, 10 Casual, 6 Earned) are scaled proportionately based on the number of active service months.
+              </p>
+            </div>
+            <div class="prorata-formula-badge">
+              <code>Allocated = (Months Active / 12) × Annual Quota</code>
+            </div>
+          </div>
+
+          <!-- Interactive Simulator & Policy Editor -->
+          <div class="calculator-two-col">
+            
+            <!-- Left: Interactive Pro-Rata Simulator -->
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>Interactive Pro-Rata Simulator</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Slide the months or pick a join date in 2026 to see the exact pro-rated leave entitlements:
+              </p>
+
+              <div class="sim-input-row">
+                <label class="sim-label">Months Active in Tracking Year (2026):</label>
+                <div class="sim-slider-container">
+                  <input type="range" min="1" max="12" value="9" class="sim-slider" id="simMonthsSlider">
+                  <span class="sim-slider-value" id="simMonthsValue">9 mo</span>
+                </div>
+              </div>
+
+              <div class="sim-input-row">
+                <label class="sim-label">Or Simulate by Joining Date in 2026:</label>
+                <input type="date" class="form-input" id="simJoinDateInput" value="2026-04-01" min="2026-01-01" max="2026-12-31">
+              </div>
+
+              <div class="sim-results-grid">
+                <div class="sim-result-item">
+                  <span class="sri-label">Sick Leave (SL)</span>
+                  <div class="sri-value" id="simResultSL">10.5</div>
+                  <div class="sri-calc" id="simCalcSL">(9 / 12) × 14 = 10.5</div>
+                </div>
+
+                <div class="sim-result-item">
+                  <span class="sri-label">Casual Leave (CL)</span>
+                  <div class="sri-value" id="simResultCL">7.5</div>
+                  <div class="sri-calc" id="simCalcCL">(9 / 12) × 10 = 7.5</div>
+                </div>
+
+                <div class="sim-result-item">
+                  <span class="sri-label">Earned Leave (EL)</span>
+                  <div class="sri-value" id="simResultEL">4.5</div>
+                  <div class="sri-calc" id="simCalcEL">(9 / 12) × 6 = 4.5</div>
+                </div>
+
+                <div class="sim-result-item" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
+                  <span class="sri-label" style="color: #fbbf24;">Total Allocation</span>
+                  <div class="sri-value" id="simResultTotal" style="color: #fbbf24;">22.5</div>
+                  <div class="sri-calc">SL + CL + EL</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Company Policy Settings -->
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Company Annual Leave Policy</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Default annual quotas for employees with 12 months tenure. Adjusting values can update company pro-rata formulas:
+              </p>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label>Tracking Year</label>
+                  <input type="number" class="form-input" id="policyYearInput" value="2026">
+                </div>
+                <div class="form-group">
+                  <label>Annual Sick Leave (SL)</label>
+                  <input type="number" step="0.5" class="form-input" id="policySLInput" value="14.0">
+                </div>
+                <div class="form-group">
+                  <label>Annual Casual Leave (CL)</label>
+                  <input type="number" step="0.5" class="form-input" id="policyCLInput" value="10.0">
+                </div>
+                <div class="form-group">
+                  <label>Annual Earned Leave (EL)</label>
+                  <input type="number" step="0.5" class="form-input" id="policyELInput" value="6.0">
+                </div>
+              </div>
+
+              <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-card); margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                  <span style="color: var(--text-muted);">Combined Total Annual Leaves:</span>
+                  <strong style="color: #fbbf24;" id="policyTotalDisplay">30.0 Days</strong>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" id="btnSavePolicy">Save Policy Settings</button>
+                <button class="btn btn-outline" id="btnRecalculateAll" title="Recalculate all employees pro-rata using current policy">
+                  Recalculate Workforce Pro-Rata
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Master Pro-Rata Matrix Lookup Table -->
+          <div class="matrix-card">
+            <h4>DOTS Furniture Official 2026 Pro-Rata Schedule Table</h4>
+            <div class="table-responsive-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Months Active</th>
+                    <th>Typical Joining Window (2026)</th>
+                    <th>Sick Leave (SL)</th>
+                    <th>Casual Leave (CL)</th>
+                    <th>Earned Leave (EL)</th>
+                    <th>Total Allocation</th>
+                    <th>Active Employees</th>
+                  </tr>
+                </thead>
+                <tbody id="matrixTbody">
+                  <!-- Dynamically populated 1 to 12 months -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ====================================================================
+             TAB 4: Workshop & Department Directory
+             ==================================================================== -->
+        <section class="tab-view" id="view-departments">
+          <div class="dept-cards-grid" id="deptCardsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- ====================================================================
+             TAB 5: Leave Management & Logging
+             ==================================================================== -->
+        <section class="tab-view" id="view-leaves">
+          
+          <div class="calculator-two-col">
+            <!-- Left: Record Leave Form -->
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                <span>Record Employee Leave</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Apply and deduct leaves directly from an employee's remaining balance.
+              </p>
+
+              <form id="recordLeaveForm">
+                <div class="form-group">
+                  <label for="leaveEmpSelect">Select Employee *</label>
+                  <select class="custom-select" style="width: 100%;" id="leaveEmpSelect" required>
+                    <option value="">-- Choose Employee --</option>
+                  </select>
+                </div>
+
+                <div id="leaveEmpPreview" style="display: none; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 12px; margin-bottom: 16px;">
+                  <div style="font-size: 13px; font-weight: 700; color: #f8fafc;" id="lepName">Name</div>
+                  <div style="font-size: 11px; color: var(--text-muted);" id="lepDept">Department</div>
+                  <div style="display: flex; gap: 12px; margin-top: 8px; font-size: 11px;">
+                    <div>SL Rem: <strong style="color: #34d399;" id="lepSL">14.0</strong></div>
+                    <div>CL Rem: <strong style="color: #34d399;" id="lepCL">10.0</strong></div>
+                    <div>EL Rem: <strong style="color: #34d399;" id="lepEL">6.0</strong></div>
+                    <div>Total Rem: <strong style="color: #fbbf24;" id="lepTotal">30.0</strong></div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="leaveTypeSelect">Leave Type *</label>
+                    <select class="custom-select" style="width: 100%;" id="leaveTypeSelect" required>
+                      <option value="sl">Sick Leave (SL)</option>
+                      <option value="cl">Casual Leave (CL)</option>
+                      <option value="el">Earned Leave (EL)</option>
+                      <option value="lwp">Leave Without Pay (LWP)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="leaveDaysInput">Number of Days *</label>
+                    <input type="number" step="0.5" min="0.5" value="1.0" class="form-input" id="leaveDaysInput" required>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="leaveDateFrom">Start Date *</label>
+                    <input type="date" class="form-input" id="leaveDateFrom" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="leaveDateTo">End Date *</label>
+                    <input type="date" class="form-input" id="leaveDateTo" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="leaveReasonInput">Reason / Notes</label>
+                  <input type="text" class="form-input" id="leaveReasonInput" placeholder="e.g. Medical illness, Personal errand, Family emergency...">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  Approve &amp; Deduct Leave
+                </button>
+              </form>
+            </div>
+
+            <!-- Right: Leave History & Activity Log -->
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2">
+                  <polyline points="12 8 12 12 14 14"></polyline>
+                  <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"></path>
+                </svg>
+                <span>Leave Activity &amp; Audit Log</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Chronological record of approved employee leave applications.
+              </p>
+
+              <div class="table-responsive-wrapper" style="max-height: 440px;">
+                <table class="data-table" id="leaveAuditTable">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Emp ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Days</th>
+                      <th>Reason</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaveAuditTbody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ====================================================================
+             TAB 6: Backup, Data & Reports
+             ==================================================================== -->
+        <section class="tab-view" id="view-settings">
+          <div class="calculator-two-col">
+            
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Export &amp; Native File Operations</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Export employee data to native Windows files or print official documents.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="btn btn-secondary" id="btnExportFullCSV" style="justify-content: flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                  <span>Export Complete Database to CSV</span>
+                </button>
+
+                <button class="btn btn-secondary" id="btnBackupJSON" style="justify-content: flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                  </svg>
+                  <span>Create Full JSON System Backup</span>
+                </button>
+
+                <button class="btn btn-secondary" id="btnImportJSON" style="justify-content: flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Import Database from Backup File</span>
+                </button>
+
+                <button class="btn btn-outline" id="btnPrintOfficialReport" style="justify-content: flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                  </svg>
+                  <span>Print Official Executive Summary</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="sim-card">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Database Reset &amp; Defaults</span>
+              </h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+                Reset all modifications and restore the clean initial dataset of 206 employees from DOTS Furniture.
+              </p>
+
+              <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: var(--radius-md); padding: 14px; margin-bottom: 16px;">
+                <p style="font-size: 12px; color: #fca5a5;">
+                  <strong>Warning:</strong> This will reload the original records from the company source file and overwrite local modifications.
+                </p>
+              </div>
+
+              <button class="btn btn-outline" id="btnResetToDefaults" style="color: #f87171; border-color: rgba(239, 68, 68, 0.4);">
+                Reset to Original DOTS Furniture Records
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: Employee Dossier (Profile View & Print Slip)
+       ======================================================================== -->
+  <div class="modal-overlay" id="modalDossier">
+    <div class="modal-container" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Employee Profile &amp; Leave Dossier</span>
+        </h3>
+        <button class="modal-close-btn" id="btnCloseDossier">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body" id="dossierModalBody">
+        <!-- Profile Banner -->
+        <div class="dossier-hero">
+          <div class="dossier-avatar" id="dosAvatar">MA</div>
+          <div class="dossier-info">
+            <h4 id="dosName">Mahabub Alam</h4>
+            <p id="dosRoleDept">MD • Management</p>
+            <div class="dossier-meta-tags">
+              <span class="tenure-pill" id="dosIdTag">ID: 1010</span>
+              <span class="tenure-pill" id="dosJoinedTag">Joined: 08/09/2020</span>
+              <span class="tenure-pill" id="dosMonthsTag">12 Months Active</span>
+              <span class="status-badge status-ok" id="dosStatusTag">Status: OK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Automated Pro-Rata Details Card -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 14px; margin-bottom: 20px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; margin-bottom: 4px;">
+            Pro-Rata Calculation Formula
+          </div>
+          <div style="font-size: 12px; color: #cbd5e1;" id="dosFormulaText">
+            Full year active tenure: (12 / 12) × Annual policy limit.
+          </div>
+        </div>
+
+        <!-- 4 Leave Type Balance Gauges -->
+        <div class="dossier-leave-gauges">
+          <div class="gauge-card">
+            <div class="gauge-title">Sick Leave</div>
+            <div class="gauge-remaining" id="dosSLRem">14.0</div>
+            <div class="gauge-detail" id="dosSLDetail">Used: 0 / Alloc: 14.0</div>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-title">Casual Leave</div>
+            <div class="gauge-remaining" id="dosCLRem">10.0</div>
+            <div class="gauge-detail" id="dosCLDetail">Used: 0 / Alloc: 10.0</div>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-title">Earned Leave</div>
+            <div class="gauge-remaining" id="dosELRem">5.0</div>
+            <div class="gauge-detail" id="dosELDetail">Used: 1 / Alloc: 6.0</div>
+          </div>
+
+          <div class="gauge-card" style="border-color: #f59e0b;">
+            <div class="gauge-title" style="color: #fbbf24;">Total Remaining</div>
+            <div class="gauge-remaining" style="color: #fbbf24;" id="dosTotalRem">29.0</div>
+            <div class="gauge-detail" id="dosTotalDetail">Allocated: 30.0 Days</div>
+          </div>
+        </div>
+
+        <!-- Quick Action Row -->
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button class="btn btn-secondary btn-sm" id="btnDossierApplyLeave">
+            <span>➕ Record Leave for Employee</span>
+          </button>
+          <button class="btn btn-outline btn-sm" id="btnDossierPrintSlip">
+            <span>🖨️ Print Official Leave Slip</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: Add / Edit Employee
+       ======================================================================== -->
+  <div class="modal-overlay" id="modalEmployeeForm">
+    <div class="modal-container" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 id="employeeFormModalTitle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+          </svg>
+          <span id="lblEmpModalTitle">Add New Employee</span>
+        </h3>
+        <button class="modal-close-btn" id="btnCloseEmpModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="employeeForm">
+        <div class="modal-body">
+          <input type="hidden" id="formEmpEditMode" value="create">
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="formEmpId">Employee ID *</label>
+              <input type="text" class="form-input" id="formEmpId" required placeholder="e.g. 1216">
+            </div>
+            <div class="form-group">
+              <label for="formEmpName">Full Name *</label>
+              <input type="text" class="form-input" id="formEmpName" required placeholder="e.g. Mohammed Farhan">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="formEmpDept">Department *</label>
+              <input type="text" class="form-input" id="formEmpDept" required list="deptDataList" placeholder="e.g. Wood Workshop">
+              <datalist id="deptDataList"></datalist>
+            </div>
+            <div class="form-group">
+              <label for="formEmpDesig">Designation *</label>
+              <input type="text" class="form-input" id="formEmpDesig" required placeholder="e.g. Technician, Helper, Officer">
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="formEmpJoiningDate">Joining Date (DD/MM/YYYY) *</label>
+              <input type="text" class="form-input" id="formEmpJoiningDate" required placeholder="DD/MM/YYYY (e.g. 15/06/2026)">
+            </div>
+            <div class="form-group">
+              <label for="formEmpMonths">Months Active (in 2026) *</label>
+              <input type="number" min="1" max="12" class="form-input" id="formEmpMonths" required value="12">
+            </div>
+          </div>
+
+          <!-- Dynamic Pro-Rata Auto Calculation Preview -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 12px; margin-top: 6px;">
+            <div style="font-size: 11px; font-weight: 700; color: #fbbf24; text-transform: uppercase; margin-bottom: 6px;">
+              Automated Pro-Rata Entitlement
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+              <span>Sick: <strong id="previewEmpSL">14.0</strong></span>
+              <span>Casual: <strong id="previewEmpCL">10.0</strong></span>
+              <span>Earned: <strong id="previewEmpEL">6.0</strong></span>
+              <span>Total: <strong style="color: #fbbf24;" id="previewEmpTotal">30.0 Days</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btnCancelEmpForm">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btnSaveEmpForm">Save Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/initialData.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
